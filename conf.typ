@@ -4,10 +4,11 @@
 )
 
 #let guia(visible: true, body) = if visible [
-    #stack(dir: ttb,
-        rect(width: 100%, stroke: black, fill: black, radius: (top: 5pt, bottom: 0pt), text(fill: white, "Guía (deshabilitar antes de entregar)")),
-        rect(width: 100%, stroke: black, fill: luma(230), radius: (top: 0pt, bottom: 5pt), body)
-    )] else []
+    #set rect(width: 100%, stroke: black)
+    #block(breakable: false)[#stack(dir: ttb,
+        rect(fill: black, radius: (top: 5pt, bottom: 0pt), text(fill: white, "Guía (deshabilitar antes de entregar)")),
+        rect(fill: luma(230), radius: (top: 0pt, bottom: 5pt), body)
+    )]] else []
 
 #let conf(
     titulo: none,
@@ -46,13 +47,14 @@
     })
 
     let header = [
+        #set text(size: 13pt)
         #stack(dir: ltr, spacing: 15pt,
             [],
             align(bottom+left, box(width: 1.35cm, image(logos.escudo))),
             align(bottom+left, stack(dir: ttb, spacing: 5pt,
-                text(size: 13pt, upper("Universidad de Chile")),
-                text(size: 13pt, upper("Facultad de Ciencias Físicas y Matemáticas")),
-                text(size: 13pt, upper("Departamento de Ciencias de la Computación")),
+                text("UNIVERSIDAD DE CHILE"),
+                text("FACULTAD DE CIENCIAS FÍSICAS Y MATEMÁTICAS"), 
+                text("DEPARTAMENTO DE CIENCIAS DE LA COMPUTACIÓN"),
                 v(5pt),
                 ),
             )
