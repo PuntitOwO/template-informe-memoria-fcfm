@@ -35,12 +35,15 @@
     // Formato de texto
     set text(
         lang: "es",
-        font: "New Computer Modern"
+        font: "New Computer Modern",
+        size: 12pt,
     )
     // Formato de headings
-    set heading(numbering: "1.")
-    show heading.where(level: 1, numbering: "1."): it => counter(heading.where(level: 1)).display() + h(1em) + it.body
-    show heading.where(level: 3): it => block(heading(level: 2, numbering: none, it.body))
+    set heading(numbering: (..n) => {
+        if n.pos().len() == 1 [#numbering("1.", ..n) #h(1em)] // Espacio extra para headings de nivel 1
+        else if n.pos().len() == 2 [#none] // No numerar headings de nivel 2
+        else [#numbering("1.", ..n)] // Para el resto, numerar con formato 1.1.1.
+    })
 
     let header = [
         #stack(dir: ltr, spacing: 15pt,

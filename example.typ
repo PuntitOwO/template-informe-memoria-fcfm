@@ -66,7 +66,7 @@ Al final del trabajo, debería ser factible saber si se ha logrado los objetivos
 (No hay que poner texto acá. Se puede empezar directamente con el objetivo general.)]
 	
 
-=== Objetivo General
+== Objetivo General
 
 #guia(visible: mostrar_guias)[
 Un _resumen conciso_ (no más de un párrafo) de la meta principal del trabajo, es decir, qué quieres lograr con el trabajo (o qué significa \"éxito\" en el contexto del trabajo).
@@ -75,7 +75,7 @@ El objetivo debería ser específico, medible, alcanzable, relevante al problema
 
 (\"Titularse\" no es una repuesta válida. :\))]
 
-=== Objetivos Específicos
+== Objetivos Específicos
 
 #guia(visible: mostrar_guias)[
 Una _lista_ de los hitos principales que se quieren lograr para (intentar) cumplir con el objetivo general. Divide el objetivo general en varios hitos que formarán las etapas del trabajo.
@@ -94,7 +94,7 @@ Los objetivos específicos deberían \"sumar\" al objetivo general.
 + ...
 + ...
 
-=== Evaluación
+== Evaluación
 
 #guia(visible: mostrar_guias)[
 Describe cómo vas a poder evaluar el trabajo en términos de cuán bien cumple con los objetivos planteados. Se pueden discutir los datos, las medidas, los usuarios, las técnicas, etc., utilizables para la evaluación.
