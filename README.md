@@ -44,6 +44,8 @@ La función `conf` recibe los siguientes parámetros:
 
 ### Opción 2: Usar en la app web
 
+Esta opción no se recomienda del todo, ya que no siempre estará actualizada con la última versión del template.
+
 1. Crear cuenta o iniciar sesión en [Typst.app](https://typst.app/)
 2. Abrir el siguiente [Proyecto](https://typst.app/project/rlXex0o5Qilf1gycQycqiH)
 3. En el [Dashboard](https://typst.app/) podrás ver el proyecto "Template Memoria DCC FCFM" en la sección "Shared with me". Puedes presionar el botón `Duplicate` (aparece al posicionar el mouse sobre el proyecto) para crear una copia del proyecto en tu cuenta.
