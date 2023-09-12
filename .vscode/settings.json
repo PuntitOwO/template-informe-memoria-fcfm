@@ -1,0 +1,9 @@
+{
+  "files.autoSave": "afterDelay",
+  "typst-lsp.exportPdf": "never",
+  "typst-lsp.experimentalFormatterMode": "on",
+  "languageToolLinter.enabled": false,
+  "languageToolLinter.serviceType": "public",
+  "languageToolLinter.languageTool.language": "es",
+  "languageToolLinter.plainText.languageIds": ["plaintext", "typst", "bibtex"]
+}
