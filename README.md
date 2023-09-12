@@ -40,7 +40,7 @@ La función `conf` recibe los siguientes parámetros:
 
 ### Opción 1: Usar el template de forma local
 
-[Instalar Typst CLI](https//github.com/typst/typst#instalación), clonar el repositorio y trabajar de manera local en un editor. Adicionalmente, puedes instalar un [LSP](https://github.com/nvarner/typst-lsp).
+[Instalar Typst CLI](https://github.com/typst/typst#instalación), clonar el repositorio y trabajar de manera local en un editor. Adicionalmente, puedes instalar un [LSP](https://github.com/nvarner/typst-lsp).
 
 ### Opción 2: Usar en la app web
 
