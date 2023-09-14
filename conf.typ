@@ -87,7 +87,13 @@
     set page(numbering: "1") // Activar numeración de páginas
     set par(
         justify: true,
+        first-line-indent: 15pt,
     ) // Formato de párrafos
+    show par: set block(spacing: 2em) // Espacio entre párrafos
+    show heading: it => {
+        it
+        par(text(size:0.35em, h(0.0em)))
+    } // Workaround para que se aplique la indentación al primer párrafo luego de un heading
     pagebreak(weak: true) // Salto de página
     counter(page).update(1) // Reestablecer el contador de páginas
     doc
