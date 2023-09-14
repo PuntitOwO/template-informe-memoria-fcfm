@@ -26,12 +26,7 @@
         paper: "us-letter",
         number-align: center,
         numbering: none,
-        margin: (
-            top: 2cm,
-            bottom: 2cm,
-            left: 3cm,
-            right: 2cm,
-        )
+        margin: (left: 3cm, rest: 2cm,)
     )
     // Formato de texto
     set text(
