@@ -67,8 +67,7 @@
     let _propuesta = "PROPUESTA DE TEMA DE MEMORIA"
     let _informe = "INFORME FINAL DE " + codigo
     let _documento = [
-        #if informe [#_informe] 
-        else [#_propuesta] 
+        #if informe [#_informe] else [#_propuesta] 
         PARA OPTAR AL TÍTULO DE \ INGENIER#autor.pronombre.titulo CIVIL EN COMPUTACIÓN]
     let _modalidad = [MODALIDAD: \ #modalidad]
     let _guia(gen: pronombre.el) = [PROFESOR#gen.guia GUÍA]

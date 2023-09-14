@@ -55,6 +55,10 @@ Esta opción no se recomienda del todo, ya que no siempre estará actualizada co
 
 ## Changelog
 
+### v1.1.1
+
+* Arreglado `else` en `#if` que no funcionaba en typst v0.8.0
+
 ### v1.1.0
 
 * Se agrega uso de pronombres para portada (BREAKING CHANGE)
