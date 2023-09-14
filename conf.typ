@@ -62,7 +62,7 @@
     let _documento = [#if informe [#_informe] else [#_propuesta] PARA OPTAR AL TÍTULO DE \ INGENIERO CIVIL EN COMPUTACIÓN]
     let _modalidad = [MODALIDAD: \ #modalidad]
     let _profesor = "PROFESOR GUÍA"
-    let _profesor_2 = "PROFESOR CO-GUÍA"
+    let _coguia = "PROFESOR CO-GUÍA"
     let _supervisor = "SUPERVISOR"
     let _ciudad = "SANTIAGO DE CHILE"
     let _anno = if anno != none [#anno] else [#datetime.today().year()]
@@ -72,15 +72,15 @@
             v(2mm),
             titulo,
             _documento,
-            autor,
+            upper(autor),
             _modalidad,
-            if profesores.len() == 0 [#v(-34mm)]
+            if profesores.len() == 0 [#v(-17mm)]
             else if profesores.len() == 1 [#_profesor: \ #profesores.at(0)]
             else [#_profesor: \ #profesores.at(0) \ #_profesor 2: \ #profesores.at(1)],
-            if coguias.len() == 0 [#v(-34mm)]
-            else if coguias.len() == 1 [#_profesor_2: \ #coguias.at(0)]
-            else [#_profesor: \ #coguias.at(0) \ #_profesor_2 2: \ #coguias.at(1)],
-            if supervisor == none [#v(-34mm)]
+            if coguias.len() == 0 [#v(-17mm)]
+            else if coguias.len() == 1 [#_coguia: \ #coguias.at(0)]
+            else [#_coguia: \ #coguias.at(0) \ #_coguia 2: \ #coguias.at(1)],
+            if supervisor == none [#v(-17mm)]
             else [#_supervisor: \ #supervisor],
         )
         #align(bottom,[#_ciudad \ #_anno])
