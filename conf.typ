@@ -11,6 +11,7 @@
 
 #let guia(visible: true, body) = if visible [
     #set rect(width: 100%, stroke: black)
+    #set par(justify: true, first-line-indent: 0pt)
     #block(breakable: false)[#stack(dir: ttb,
         rect(fill: black, radius: (top: 5pt, bottom: 0pt), text(fill: white, "Guía (deshabilitar antes de entregar)")),
         rect(fill: luma(230), radius: (top: 0pt, bottom: 5pt), body)
@@ -18,17 +19,13 @@
 
 #let conf(
     titulo: none,
-    autor: none,
-    pronombre_autor: pronombre.el, // pronombre.el, pronombre.ella o pronombre.elle para diferenciación de género en título
+    autor: none, // diccionario con nombre y pronombre, (nombre: "", pronombre: pronombre.<el/ella/elle>) 
     informe: false, // false para propuesta, true para informe
     codigo: "CC6908", // CC6908 para malla v3, CC6907 para malla v5
     modalidad: "Memoria", // puede ser Memoria, Práctica Extendida, Doble Titulación con Magíster,Doble Titulación de Dos Especialidades
-    profesores: (), // si es solo un profesor guía, una lista de un elemento es ("nombre apellido",)
-    pronombres_profesores: (pronombre.el, pronombre.el), // puede ser (pronombre.<el/ella/elle>,)si es un docente o (pronombre.<el/ella/elle>,pronombre.<el/ella/elle>) si son dos
-    coguias: (), // si es solo un profesor co-guía, una lista de un elemento es ("nombre apellido",)
-    pronombres_coguias: (pronombre.el, pronombre.el), // puede ser (pronombre.<el/ella/elle>,)si es un docente o (pronombre.<el/ella/elle>,pronombre.<el/ella/elle>) si son dos
-    supervisor: none, // solo en caso de práctica extendida llenar esto, en otro caso none
-    pronombre_supervisor: pronombre.el, // pronombre.el, pronombre.ella o pronombre.elle para diferenciación de género
+    profesores: (), // si es solo un profesor guía, una lista de un elemento es ((nombre: "nombre apellido", pronombre: pronombre.<el/ella/elle>),))
+    coguias: (), // si es solo un profesor co-guía, una lista de un elemento es ((nombre: "nombre apellido", pronombre: pronombre.<el/ella/elle>),))
+    supervisor: none, // solo en caso de práctica extendida llenar esto, en otro caso none, (nombre: "nombre apellido", pronombre: pronombre.<el/ella/elle>)
     anno: none, // si no se especifica, se usa el año actual
     doc,
 ) = {
@@ -72,7 +69,7 @@
     let _documento = [
         #if informe [#_informe] 
         else [#_propuesta] 
-        PARA OPTAR AL TÍTULO DE \ INGENIER#pronombre_autor.titulo CIVIL EN COMPUTACIÓN]
+        PARA OPTAR AL TÍTULO DE \ INGENIER#autor.pronombre.titulo CIVIL EN COMPUTACIÓN]
     let _modalidad = [MODALIDAD: \ #modalidad]
     let _guia(gen: pronombre.el) = [PROFESOR#gen.guia GUÍA]
     let _coguia(gen: pronombre.el) = [PROFESOR#gen.guia CO-GUÍA]
@@ -85,22 +82,22 @@
             v(2mm),
             titulo,
             _documento,
-            upper(autor),
+            upper(autor.nombre),
             _modalidad,
             if profesores.len() == 0 [#v(-17mm)]
             else if profesores.len() == 1 
-                [#_guia(gen: pronombres_profesores.at(0)): \ #profesores.at(0)]
+                [#_guia(gen: profesores.at(0).pronombre): \ #profesores.at(0).nombre]
             else
-                [#_guia(gen: pronombres_profesores.at(0)): \ #profesores.at(0) \
-                #_guia(gen: pronombres_profesores.at(1)) 2: \ #profesores.at(1)],
+                [#_guia(gen: profesores.at(0).pronombre): \ #profesores.at(0).nombre \
+                #_guia(gen: profesores.at(1).pronombre) 2: \ #profesores.at(1).nombre],
             if coguias.len() == 0 [#v(-17mm)]
             else if coguias.len() == 1
-                [#_coguia(gen: pronombres_coguias.at(0)): \ #coguias.at(0)]
+                [#_coguia(gen: coguias.at(0).pronombre): \ #coguias.at(0).nombre]
             else 
-                [#_coguia(gen: pronombres_coguias.at(0)): \ #coguias.at(0) \
-                #_coguia(gen: pronombres_coguias.at(1)) 2: \ #coguias.at(1)],
+                [#_coguia(gen: coguias.at(0).pronombre): \ #coguias.at(0).nombre \
+                #_coguia(gen: coguias.at(1).pronombre) 2: \ #coguias.at(1).nombre],
             if supervisor == none [#v(-17mm)]
-            else [#_supervisor(gen: pronombre_supervisor): \ #supervisor],
+            else [#_supervisor(gen: supervisor.pronombre): \ #supervisor.nombre],
         )
         #align(bottom,[#_ciudad \ #_anno])
     ]

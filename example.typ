@@ -1,10 +1,11 @@
-#import "conf.typ": conf, guia
+#import "conf.typ": conf, guia, pronombre
 #let mostrar_guias = true
 #show: conf.with(
     titulo: "El Título de mi Tema",
-    autor: "María Echón",
-    profesores: ("Juan Pérez",),
-    supervisor: "María Gómez",
+    autor: (nombre: "María Echón", pronombre: pronombre.elle),
+    profesores: ((nombre: "Juan Pérez", pronombre: pronombre.el),),
+    coguias: ((nombre: "Juana Pérez", pronombre: pronombre.ella),),
+    supervisor: (nombre: "María Gómez", pronombre: pronombre.ella),
     anno: "2023",
 )
 
@@ -16,12 +17,12 @@ Además, hay que reemplazar los datos de la portada en los parámetros de la fun
 
 Los parámetros que acepta la función `conf` son:
 - título: El título del tema.
-- autor: Tu nombre.
+- autor: Un diccionario con campos `nombre` y `pronombre`. Para los pronombres, importar el diccionario `pronombre` desde `conf.typ`. Los valores disponibles son `pronombre.el`, `pronombre.ella` y `pronombre.elle`.
 - informe: `false` si es la propuesta de tema, `true` si es el informe final.
 - codigo: Omitir si es la propuesta de tema. Si es el informe final, colocar el código del ramo. (CC6908 para malla v3, CC6907 para malla v5)
 - modalidad: Puede ser \"Memoria\", \"Práctica extendida\", \"Titulación con Magíster\" o \"Doble Titulación de Dos Especialidades\"
-- profesores: Lista de profesores guías. Si es uno: (\"Nombre Apellido\",). Si son dos: (\"Nombre Apellido\",\"Nombre Apellido\").
-- supervisor: Nombre del supervisor en caso de práctica extendida.
+- profesores: Lista de profesores guías. Cada elemento de la lista es un diccionario con campos `nombre` y `pronombre`. Si es un solo elemento, recordar poner una coma al final: `(dict_guia,)`
+- supervisor: Información del supervisor en caso de práctica extendida. Es un diccionario con campos `nombre` y `pronombre`.
 - anno: Año en que se entrega el informe. Por defecto se usa el año actual. 
 
 Como aproximación, se espera que la propuesta sea de 5 a 10 páginas.
