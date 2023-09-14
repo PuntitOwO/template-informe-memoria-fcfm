@@ -106,7 +106,7 @@
     // Comienza el documento, en página 1
     set page(
         numbering: "1",
-        margin: (left: 2cm, rest: 2cm,),
+        margin: (left: 3cm, rest: 2cm,),
     ) // Activar numeración de páginas y márgenes
     set par(
         justify: true,
