@@ -16,7 +16,8 @@
     informe: false, // false para propuesta, true para informe
     codigo: "CC6908", // CC6908 para malla v3, CC6907 para malla v5
     modalidad: "Memoria", // puede ser Memoria, Práctica Extendida, Doble Titulación con Magíster,Doble Titulación de Dos Especialidades
-    profesores: (), // si es solo un profesor guia, una lista de un elemento es ("nombre apellido",)
+    profesores: (), // si es solo un profesor guía, una lista de un elemento es ("nombre apellido",)
+    coguias: (), // si es solo un profesor co-guía, una lista de un elemento es ("nombre apellido",)
     supervisor: none, // solo en caso de práctica extendida llenar esto, en otro caso none
     anno: none, // si no se especifica, se usa el año actual
     doc,
@@ -26,7 +27,7 @@
         paper: "us-letter",
         number-align: center,
         numbering: none,
-        margin: (left: 3cm, rest: 2cm,)
+        // margin: (left: 3cm, rest: 2cm,) se configura después de la portada
     )
     // Formato de texto
     set text(
@@ -61,6 +62,7 @@
     let _documento = [#if informe [#_informe] else [#_propuesta] PARA OPTAR AL TÍTULO DE \ INGENIERO CIVIL EN COMPUTACIÓN]
     let _modalidad = [MODALIDAD: \ #modalidad]
     let _profesor = "PROFESOR GUÍA"
+    let _profesor_2 = "PROFESOR CO-GUÍA"
     let _supervisor = "SUPERVISOR"
     let _ciudad = "SANTIAGO DE CHILE"
     let _anno = if anno != none [#anno] else [#datetime.today().year()]
@@ -75,6 +77,9 @@
             if profesores.len() == 0 [#v(-34mm)]
             else if profesores.len() == 1 [#_profesor: \ #profesores.at(0)]
             else [#_profesor: \ #profesores.at(0) \ #_profesor 2: \ #profesores.at(1)],
+            if coguias.len() == 0 [#v(-34mm)]
+            else if coguias.len() == 1 [#_profesor_2: \ #coguias.at(0)]
+            else [#_profesor: \ #coguias.at(0) \ #_profesor_2 2: \ #coguias.at(1)],
             if supervisor == none [#v(-34mm)]
             else [#_supervisor: \ #supervisor],
         )
@@ -84,7 +89,10 @@
     header
     portada
     // Comienza el documento, en página 1
-    set page(numbering: "1") // Activar numeración de páginas
+    set page(
+        numbering: "1",
+        margin: (left: 2cm, rest: 2cm,),
+    ) // Activar numeración de páginas y márgenes
     set par(
         justify: true,
         first-line-indent: 15pt,

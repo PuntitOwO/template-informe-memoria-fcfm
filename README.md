@@ -28,11 +28,12 @@ La función `conf` recibe los siguientes parámetros:
 | Parámetro    | Descripción                                                                                                                                    |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | `título`     | El título del tema                                                                                                                             |
-| `autor`      | Nombre de estudiante                                                                                                                           |
+| `autor`      | Nombre completo de estudiante                                                                                                                  |
 | `informe`    | `false` si es la propuesta de tema, `true` si es el informe final                                                                              |
 | `codigo`     | Omitir si es la propuesta de tema. <br> Si es el informe final, colocar el código del ramo. (CC6908 para malla v3, CC6907 para malla v5)       |
 | `modalidad`  | Modalidad del trabajo. Puede ser \"Memoria\", \"Práctica extendida\", \"Titulación con Magíster\" o \"Doble Titulación de Dos Especialidades\" |
-| `profesores` | Lista de profesores guías. Si es uno: (\"Nombre Apellido\",). Si son dos: (\"Nombre Apellido\",\"Nombre Apellido\")                            |
+| `profesores` | Lista de profesores guías. Si es uno: (\"Nombres Apellidos\",). Si son dos: (\"Nombres Apellidos\",\"Nombre Apellido\")                            |
+| `coguias`    | Lista de profesores co-guías. Si es uno: (\"Nombres Apellidos\",). Si son dos: (\"Nombres Apellidos\",\"Nombre Apellido\")                            |
 | `supervisor` | Nombre del supervisor en caso de práctica extendida                                                                                            |
 | `anno`       | Año en que se entrega el informe. Por defecto se usa el año actual.                                                                            |
 
