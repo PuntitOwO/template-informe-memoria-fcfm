@@ -77,28 +77,28 @@
     let _anno = if anno != none [#anno] else [#datetime.today().year()]
 
     let portada = align(center)[
-        #stack(dir: ttb, spacing: 17mm,
+        #stack(dir: ttb, spacing: 1fr,
             v(2mm),
             titulo,
             _documento,
             upper(autor.nombre),
             _modalidad,
-            if profesores.len() == 0 [#v(-17mm)]
+            if profesores.len() == 0 [#none]
             else if profesores.len() == 1 
                 [#_guia(gen: profesores.at(0).pronombre): \ #profesores.at(0).nombre]
             else
                 [#_guia(gen: profesores.at(0).pronombre): \ #profesores.at(0).nombre \
                 #_guia(gen: profesores.at(1).pronombre) 2: \ #profesores.at(1).nombre],
-            if coguias.len() == 0 [#v(-17mm)]
+            if coguias.len() == 0 [#none]
             else if coguias.len() == 1
                 [#_coguia(gen: coguias.at(0).pronombre): \ #coguias.at(0).nombre]
             else 
                 [#_coguia(gen: coguias.at(0).pronombre): \ #coguias.at(0).nombre \
                 #_coguia(gen: coguias.at(1).pronombre) 2: \ #coguias.at(1).nombre],
-            if supervisor == none [#v(-17mm)]
+            if supervisor == none [#none]
             else [#_supervisor(gen: supervisor.pronombre): \ #supervisor.nombre],
+            [#_ciudad \ #_anno],
         )
-        #align(bottom,[#_ciudad \ #_anno])
     ]
     // Portada
     header
