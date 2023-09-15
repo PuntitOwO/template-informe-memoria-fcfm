@@ -78,8 +78,7 @@
 
     let portada = align(center)[
         #stack(dir: ttb, spacing: 1fr,
-            v(2mm),
-            titulo,
+            ..(titulo,
             _documento,
             upper(autor.nombre),
             _modalidad,
@@ -97,7 +96,7 @@
                 #_coguia(gen: coguias.at(1).pronombre) 2: \ #coguias.at(1).nombre],
             if supervisor == none [#none]
             else [#_supervisor(gen: supervisor.pronombre): \ #supervisor.nombre],
-            [#_ciudad \ #_anno],
+            [#_ciudad \ #_anno],).filter(it => it != [#none]),
         )
     ]
     // Portada
