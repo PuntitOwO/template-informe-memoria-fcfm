@@ -117,7 +117,7 @@ Aquí se puede dar una lista preliminar de los pasos que se van a seguir para de
 + ...
 
 #bibliography(
-    "bibliografia.bib",
+    "bibliografia.yml",
     title: "Referencias",
     style: "ieee",
 )
