@@ -49,8 +49,8 @@ En el caso de la práctica extendida, incluir detalles de la organización, su q
 (1 a 2 páginas)]
 
 Ejemplos de referencias:
-- Conferencia: #cite("CorlessJK97")
-- Revista y Tesis: #cite("NewmanT42", "Turing38")
+- Conferencia: @CorlessJK97 // azucar sintactica para #cite("CorlessJK97")
+- Revista y Tesis: #cite("NewmanT42", "Turing38") // para citas múltiples se usa #cite
 
 = Objetivos
 
