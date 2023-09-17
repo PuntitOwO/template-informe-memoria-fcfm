@@ -27,6 +27,7 @@
     coguias: (), // si es solo un profesor co-guía, una lista de un elemento es ((nombre: "nombre apellido", pronombre: pronombre.<el/ella/elle>),))
     supervisor: none, // solo en caso de práctica extendida llenar esto, en otro caso none, (nombre: "nombre apellido", pronombre: pronombre.<el/ella/elle>)
     anno: none, // si no se especifica, se usa el año actual
+    espaciado_titulo: 1fr, // espacio extra que rodea al título y al nombre en la portada, 1fr es lo mismo que el resto de espacios, 2fr es el doble, etc.
     doc,
 ) = {
     // Formato de página
@@ -77,28 +78,32 @@
     let _anno = if anno != none [#anno] else [#datetime.today().year()]
 
     let portada = align(center)[
-        #stack(dir: ttb, spacing: 17mm,
-            v(2mm),
+        #stack(dir: ttb, spacing: 1fr,
+            ..(
+            espaciado_titulo,
             titulo,
+            0.5fr,
             _documento,
+            espaciado_titulo,
             upper(autor.nombre),
+            espaciado_titulo,
             _modalidad,
-            if profesores.len() == 0 [#v(-17mm)]
+            if profesores.len() == 0 [#none]
             else if profesores.len() == 1 
                 [#_guia(gen: profesores.at(0).pronombre): \ #profesores.at(0).nombre]
             else
                 [#_guia(gen: profesores.at(0).pronombre): \ #profesores.at(0).nombre \
                 #_guia(gen: profesores.at(1).pronombre) 2: \ #profesores.at(1).nombre],
-            if coguias.len() == 0 [#v(-17mm)]
+            if coguias.len() == 0 [#none]
             else if coguias.len() == 1
                 [#_coguia(gen: coguias.at(0).pronombre): \ #coguias.at(0).nombre]
             else 
                 [#_coguia(gen: coguias.at(0).pronombre): \ #coguias.at(0).nombre \
                 #_coguia(gen: coguias.at(1).pronombre) 2: \ #coguias.at(1).nombre],
-            if supervisor == none [#v(-17mm)]
+            if supervisor == none [#none]
             else [#_supervisor(gen: supervisor.pronombre): \ #supervisor.nombre],
+            [#_ciudad \ #_anno],).filter(it => it != [#none]),
         )
-        #align(bottom,[#_ciudad \ #_anno])
     ]
     // Portada
     header

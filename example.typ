@@ -7,6 +7,7 @@
     coguias: ((nombre: "Juana Pérez", pronombre: pronombre.ella),),
     supervisor: (nombre: "María Gómez", pronombre: pronombre.ella),
     anno: "2023",
+    espaciado_titulo: 2fr,
 )
 
 #guia(visible: mostrar_guias)[Se debe quitar todas las guías (estas cajas grises) antes de entregar el documento.
@@ -23,7 +24,8 @@ Los parámetros que acepta la función `conf` son:
 - modalidad: Puede ser \"Memoria\", \"Práctica extendida\", \"Titulación con Magíster\" o \"Doble Titulación de Dos Especialidades\"
 - profesores: Lista de profesores guías. Cada elemento de la lista es un diccionario con campos `nombre` y `pronombre`. Si es un solo elemento, recordar poner una coma al final: `(dict_guia,)`
 - supervisor: Información del supervisor en caso de práctica extendida. Es un diccionario con campos `nombre` y `pronombre`.
-- anno: Año en que se entrega el informe. Por defecto se usa el año actual. 
+- anno: Año en que se entrega el informe. Por defecto se usa el año actual.
+- espaciado_titulo: Espaciado extra antes del título y al rededor de autor. Por defecto es `1fr`. Se puede usar `2fr` para un espaciado doble, `3fr` para un espaciado triple, etc.
 
 Como aproximación, se espera que la propuesta sea de 5 a 10 páginas.
 
