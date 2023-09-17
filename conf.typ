@@ -27,6 +27,7 @@
     coguias: (), // si es solo un profesor co-guía, una lista de un elemento es ((nombre: "nombre apellido", pronombre: pronombre.<el/ella/elle>),))
     supervisor: none, // solo en caso de práctica extendida llenar esto, en otro caso none, (nombre: "nombre apellido", pronombre: pronombre.<el/ella/elle>)
     anno: none, // si no se especifica, se usa el año actual
+    espaciado_titulo: 1fr, // espacio extra que rodea al título y al nombre en la portada, 1fr es lo mismo que el resto de espacios, 2fr es el doble, etc.
     doc,
 ) = {
     // Formato de página
@@ -78,9 +79,14 @@
 
     let portada = align(center)[
         #stack(dir: ttb, spacing: 1fr,
-            ..(titulo,
+            ..(
+            espaciado_titulo,
+            titulo,
+            0.5fr,
             _documento,
+            espaciado_titulo,
             upper(autor.nombre),
+            espaciado_titulo,
             _modalidad,
             if profesores.len() == 0 [#none]
             else if profesores.len() == 1 

@@ -25,17 +25,18 @@ Puedes ver un ejemplo más completo en [example.typ](example.typ). Para aprender
 
 La función `conf` recibe los siguientes parámetros:
 
-| Parámetro    | Descripción                                                                                                                                    |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| `título`     | El título del tema                                                                                                                             |
-| `autor`      | Diccionario* con Nombre completo de estudiante y pronombre                                                                                     |
-| `informe`    | `false` si es la propuesta de tema, `true` si es el informe final                                                                              |
-| `codigo`     | Omitir si es la propuesta de tema. <br> Si es el informe final, colocar el código del ramo. (CC6908 para malla v3, CC6907 para malla v5)       |
-| `modalidad`  | Modalidad del trabajo. Puede ser \"Memoria\", \"Práctica extendida\", \"Titulación con Magíster\" o \"Doble Titulación de Dos Especialidades\" |
-| `profesores` | Lista de profesores guías. Si es uno: (Diccionario*,). Si son dos: (Diccionario1*,Diccionario2*)                                               |
-| `coguias`    | Lista de profesores co-guías. Si es uno: (Diccionario*,). Si son dos: (Diccionario1*,Diccionario2*)                                            |
-| `supervisor` | Diccionario* con Nombre y pronombre del supervisor en caso de práctica extendida                                                               |
-| `anno`       | Año en que se entrega el informe. Por defecto se usa el año actual.                                                                            |
+| Parámetro          | Descripción                                                                                                                                     |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `título`           | El título del tema                                                                                                                              |
+| `autor`            | Diccionario* con Nombre completo de estudiante y pronombre                                                                                      |
+| `informe`          | `false` si es la propuesta de tema, `true` si es el informe final                                                                               |
+| `codigo`           | Omitir si es la propuesta de tema. <br> Si es el informe final, colocar el código del ramo. (CC6908 para malla v3, CC6907 para malla v5)        |
+| `modalidad`        | Modalidad del trabajo. Puede ser \"Memoria\", \"Práctica extendida\", \"Titulación con Magíster\" o \"Doble Titulación de Dos Especialidades\"  |
+| `profesores`       | Lista de profesores guías. Si es uno: (Diccionario*,). Si son dos: (Diccionario1*,Diccionario2*)                                                |
+| `coguias`          | Lista de profesores co-guías. Si es uno: (Diccionario*,). Si son dos: (Diccionario1*,Diccionario2*)                                             |
+| `supervisor`       | Diccionario* con Nombre y pronombre del supervisor en caso de práctica extendida                                                                |
+| `anno`             | Año en que se entrega el informe. Por defecto se usa el año actual.                                                                             |
+| `espaciado_titulo` | espacio extra que rodea al título y al nombre en la portada, 1fr es lo mismo que el resto de espacios, 2fr es el doble, 0.5fr es la mitad, etc. |
 
 *Nota: El diccionario debe contener los campos `nombre` y `pronombre` con el nombre completo y pronombre de la persona. El pronombre puede ser `pronombre.el`, `pronombre.ella` o `pronombre.elle` y para usarse debe ser importado con `#import "conf.typ": pronombre`.
 
@@ -54,6 +55,11 @@ Esta opción no se recomienda del todo, ya que no siempre estará actualizada co
 3. En el [Dashboard](https://typst.app/) podrás ver el proyecto "Template Memoria DCC FCFM" en la sección "Shared with me". Puedes presionar el botón `Duplicate` (aparece al posicionar el mouse sobre el proyecto) para crear una copia del proyecto en tu cuenta.
 
 ## Changelog
+
+### v1.2.0
+
+* Se modifica el espaciado entre elementos de la portada para que sea uniforme.
+* Se agrega parámetro `espaciado_titulo` para modificar el espaciado extra al rededor del título en la portada.
 
 ### v1.1.1
 
