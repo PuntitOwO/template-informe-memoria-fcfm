@@ -118,10 +118,14 @@
         first-line-indent: 15pt,
     ) // Formato de párrafos
     show par: set block(spacing: 2em) // Espacio entre párrafos
-    show heading: it => {
-        it
-        par(text(size:0.35em, h(0.0em)))
-    } // Workaround para que se aplique la indentación al primer párrafo luego de un heading
+    
+    // Workaround para que se aplique la indentación al primer párrafo luego de un heading
+    // show heading: it => {
+    //     it
+    //     par(text(size:0.35em, h(0.0em)))
+    // } 
+    
+    set cite(style: "council-of-science-editors") // esto deja las citas contiguas como [1, 2] o [1-3]
     pagebreak(weak: true) // Salto de página
     counter(page).update(1) // Reestablecer el contador de páginas
     doc
