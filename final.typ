@@ -132,13 +132,28 @@
     set cite(style: "council-of-science-editors") // esto deja las citas contiguas como [1, 2] o [1-3]
     pagebreak(weak: true) // Salto de página
     counter(page).update(1) // Reestablecer el contador de páginas
+    counter(<capitulo>).update(1) // Iniciar el contador de capítulos
     doc
 }
 
 #let frontmatter-section(title: "", doc) = {
-    show heading: set text()
-    v(20pt)
+    show heading: set text(size: 24pt)
+    v(85pt)
     heading(title, numbering: none, outlined: false)
+    v(45pt)
+    doc
+    pagebreak(weak: true)
+}
+
+#let mainmatter-section(title, doc) = {
+    show heading: set text(size: 24pt)
+    let cnt = counter(<capitulo>)
+    v(85pt)
+    text(size: 24pt, weight: "bold")[Capítulo #cnt.display()]
+    v(13pt)
+    [#heading(title, numbering: none, outlined: true) <capitulo>]
+    v(45pt)
+    cnt.step()
     doc
     pagebreak(weak: true)
 }
@@ -163,4 +178,29 @@
         2fr
     )
     pagebreak(weak: true)
+}
+
+#let toc = {
+    frontmatter-section(
+        title: "Tabla de Contenido",
+        outline(title: none, target: <capitulo>),
+    )
+}
+
+#let tot = {
+    frontmatter-section(
+        title: "Índice de Tablas",
+        outline(title: none, target: figure.where(kind: table)),
+    )
+}
+
+#let toi = {
+    frontmatter-section(
+        title: "Índice de Ilustraciones",
+        outline(title: none, target: <figure>),
+    )
+}
+
+#let capitulo(title: "", doc) = {
+    mainmatter-section(title, doc)
 }
