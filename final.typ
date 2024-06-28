@@ -122,7 +122,7 @@
         first-line-indent: 15pt,
     ) // Formato de párrafos
     show par: set block(spacing: 2em) // Espacio entre párrafos
-    
+
     // Workaround para que se aplique la indentación al primer párrafo luego de un heading
     // show heading: it => {
     //     it
@@ -143,6 +143,12 @@
     v(45pt)
     doc
     pagebreak(weak: true)
+}
+
+#let start-doc(doc) = {
+    show page: set page(numbering: "1")
+    counter(page).update(1)
+    doc
 }
 
 #let mainmatter-section(title, doc) = {
@@ -197,7 +203,7 @@
 #let toi = {
     frontmatter-section(
         title: "Índice de Ilustraciones",
-        outline(title: none, target: <figure>),
+        outline(title: none, target: figure.where(kind: image)),
     )
 }
 
