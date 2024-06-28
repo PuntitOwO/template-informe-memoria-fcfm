@@ -1,4 +1,4 @@
-#import "final.typ": conf, guia, pronombre, resumen, dedicatoria, agradecimientos, toc, tot, toi, start-doc, capitulo
+#import "final.typ": conf, guia, pronombre, resumen, dedicatoria, agradecimientos, start-doc, capitulo
 #let mostrar_guias = true
 #show: conf.with(
     titulo: "TÍTULO DE LA MEMORIA/TESIS",
@@ -29,12 +29,6 @@
     
     #lorem(100)
 ]
-
-#toc
-
-#tot
-
-#toi
 
 #show: start-doc
 
@@ -81,7 +75,7 @@
 
     #figure(
         image("imagenes/institucion/fcfm.svg", width: 20%),
-        caption: "Figura de ejemplo",
+        caption: "Logo de la facultad",
     )
     
     #lorem(100)

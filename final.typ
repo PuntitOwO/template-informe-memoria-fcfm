@@ -145,12 +145,6 @@
     pagebreak(weak: true)
 }
 
-#let start-doc(doc) = {
-    show page: set page(numbering: "1")
-    counter(page).update(1)
-    doc
-}
-
 #let mainmatter-section(title, doc) = {
     show heading: set text(size: 24pt)
     let cnt = counter(<capitulo>)
@@ -205,6 +199,15 @@
         title: "Índice de Ilustraciones",
         outline(title: none, target: figure.where(kind: image)),
     )
+}
+
+#let start-doc(doc) = {
+    toc
+    tot
+    toi
+    show page: set page(numbering: "1")
+    counter(page).update(1)
+    doc
 }
 
 #let capitulo(title: "", doc) = {
