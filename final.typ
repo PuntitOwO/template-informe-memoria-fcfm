@@ -181,9 +181,16 @@
 }
 
 #let toc = {
+    set outline(fill: none)
+    show outline.entry: it => {
+        box(height: 10pt, stroke: black, strong(it))
+    }
     frontmatter-section(
         title: "Tabla de Contenido",
-        outline(title: none, target: <capitulo>),
+        {
+            v(20pt)
+            outline(title: none, target: <capitulo>)
+        },
     )
 }
 
