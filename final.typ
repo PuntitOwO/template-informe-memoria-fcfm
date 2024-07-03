@@ -146,14 +146,16 @@
 }
 
 #let mainmatter-section(title, doc) = {
-    show heading: set text(size: 24pt)
-    let cnt = counter(<capitulo>)
+    let cnt = counter(heading)
+    show heading: it => text(size: 24pt, weight: "bold")[Capítulo #cnt.display("1") \ \ #it.body]
     v(85pt)
-    text(size: 24pt, weight: "bold")[Capítulo #cnt.display()]
-    v(13pt)
-    [#heading(title, numbering: none, outlined: true) <capitulo>]
-    v(45pt)
-    cnt.step()
+    heading(
+        title,
+        numbering: "1.", 
+        outlined: true,
+        supplement: "Capítulo",
+    )
+    v(30pt)
     doc
     pagebreak(weak: true)
 }
@@ -182,14 +184,12 @@
 
 #let toc = {
     set outline(fill: none)
-    show outline.entry: it => {
-        box(height: 10pt, stroke: black, strong(it))
-    }
+    show outline.entry: it => box(height: 30pt, strong(it))
     frontmatter-section(
         title: "Tabla de Contenido",
         {
-            v(20pt)
-            outline(title: none, target: <capitulo>)
+            v(10pt)
+            outline(title: none)
         },
     )
 }
