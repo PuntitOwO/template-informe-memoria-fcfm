@@ -147,7 +147,7 @@
 
 #let mainmatter-section(title, doc) = {
     let cnt = counter(heading)
-    show heading: it => text(size: 24pt, weight: "bold")[Capítulo #cnt.display("1") \ \ #it.body]
+    show heading.where(level: 1): it => text(size: 24pt, weight: "bold")[Capítulo #cnt.display("1") \ \ #it.body]
     v(85pt)
     heading(
         title,
@@ -183,13 +183,12 @@
 }
 
 #let toc = {
-    set outline(fill: none)
-    show outline.entry: it => box(height: 30pt, strong(it))
+    show outline.entry: it => box(height: 30pt, strong(h(2em) * (it.level - 1) + it))
     frontmatter-section(
         title: "Tabla de Contenido",
         {
             v(10pt)
-            outline(title: none)
+            outline(title: none, fill: none, depth: 2)
         },
     )
 }
@@ -213,6 +212,7 @@
     tot
     toi
     show page: set page(numbering: "1")
+    set heading(numbering: "1.1.")
     counter(page).update(1)
     doc
 }
