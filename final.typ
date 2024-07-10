@@ -183,7 +183,8 @@
 }
 
 #let toc = {
-    show outline.entry: it => box(height: 30pt, strong(h(2em) * (it.level - 1) + it))
+    show outline.entry.where(level: 1): it => box(height: 20pt, align(bottom, strong(it)))
+    show outline.entry.where(level: 2): it => box(height: 10pt, h(15pt) + it)
     frontmatter-section(
         title: "Tabla de Contenido",
         {
