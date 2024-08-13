@@ -160,8 +160,32 @@
     pagebreak(weak: true)
 }
 
-#let resumen(doc) = {
-    frontmatter-section(title: "Resumen", doc)
+#let resumen(
+    titulo: none,
+    autor: none, // diccionario con nombre y pronombre, (nombre: "", pronombre: pronombre.<el/ella/elle>) 
+    tesis: false, // false para memoria, true para tesis
+    grado-titulo: "???", // especificar el grado o título al que se opta
+    profesores: (), // si es solo un profesor guía, una lista de un elemento es ((nombre: "nombre apellido", pronombre: pronombre.<el/ella/elle>),)
+    anno: none, // si no se especifica, se usa el año actual
+    doc,
+) = {
+    let _memoria = [MEMORIA PARA OPTAR AL TÍTULO DE INGENIER#autor.pronombre.titulo CIVIL EN #grado-titulo]
+    let _tesis = [TESIS PARA OPTAR AL GRADO DE MAGÍSTER EN #grado-titulo]
+    let _documento = if tesis [#_tesis] else [#_memoria]
+    let _resumen = [RESUMEN DE LA #_documento]
+    let _anno = if anno != none [#anno] else [#datetime.today().year()]
+    // añadir bloque de resumen
+    stack(dir: ltr,
+        1fr,
+        block(
+            width: 50%,
+            [#set text(hyphenate: false); #_resumen \ POR: #upper(autor.nombre) \ FECHA: #_anno \ PROF. GUIA: #profesores.at(0).nombre],
+        )
+    )
+    show heading: it => {set text(size: 12pt, hyphenate: false); align(center, it)}
+    heading(titulo, numbering: none, outlined: false)
+    doc
+    pagebreak(weak: true)
 }
 
 #let agradecimientos(doc) = {

@@ -10,7 +10,12 @@
     espaciado_titulo: 2fr,
 )
 
-#resumen[
+#resumen(
+    titulo: "TÍTULO DE LA MEMORIA/TESIS",
+    autor: (nombre: "MARÍA ECHÓN", pronombre: pronombre.elle),
+    profesores: ((nombre: "JUAN PÉREZ", pronombre: pronombre.el),),
+    anno: "2023",
+)[
     #lorem(150)
     
     #lorem(100)
