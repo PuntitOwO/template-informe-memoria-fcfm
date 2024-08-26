@@ -178,8 +178,8 @@
     stack(dir: ltr,
         1fr,
         block(
-            width: 50%,
-            [#set text(hyphenate: false); #_resumen \ POR: #upper(autor.nombre) \ FECHA: #_anno \ PROF. GUIA: #profesores.at(0).nombre],
+            width: 60%,
+            [#set text(size: 11pt, hyphenate: false); #_resumen \ POR: #upper(autor.nombre) \ FECHA: #_anno \ PROF. GUIA: #profesores.at(0).nombre],
         )
     )
     show heading: it => {set text(size: 12pt, hyphenate: false); align(center, it)}
