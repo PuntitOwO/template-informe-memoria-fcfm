@@ -160,6 +160,21 @@
     pagebreak(weak: true)
 }
 
+#let backmatter-section(title, doc) = {
+    let cnt = counter(heading)
+    show heading.where(level: 1): it => text(size: 24pt, weight: "bold")[Apéndice #cnt.display("A") \ \ #it.body]
+    v(85pt)
+    heading(
+        title,
+        numbering: "A.",
+        outlined: true,
+        supplement: "Apéndice",
+    )
+    v(30pt)
+    doc
+    pagebreak(weak: true)
+}
+
 #let resumen(
     titulo: none,
     autor: none, // diccionario con nombre y pronombre, (nombre: "", pronombre: pronombre.<el/ella/elle>) 
@@ -242,6 +257,17 @@
     doc
 }
 
+#let end-doc(bib-file: "bibliografia.yml", doc) = {
+    bibliography(bib-file, title: "Referencias", style: "ieee")
+    counter(heading).update(0)
+    pagebreak(weak: true)
+    doc
+}
+
 #let capitulo(title: "", doc) = {
     mainmatter-section(title, doc)
+}
+
+#let apendice(title: "", doc) = {
+    backmatter-section(title, doc)
 }

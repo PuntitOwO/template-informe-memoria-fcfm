@@ -1,4 +1,4 @@
-#import "final.typ": conf, guia, pronombre, resumen, dedicatoria, agradecimientos, start-doc, capitulo
+#import "final.typ": conf, guia, pronombre, resumen, dedicatoria, agradecimientos, start-doc, end-doc, capitulo, apendice
 #let mostrar_guias = true
 #show: conf.with(
     titulo: "TÍTULO DE LA MEMORIA/TESIS",
@@ -94,8 +94,12 @@
     #lorem(100)
 ]
 
-#bibliography(
-    "bibliografia.yml",
-    title: "Referencias",
-    style: "ieee",
-)
+#show: end-doc
+
+#apendice(title: "Anexo")[
+    #lorem(100)
+    
+    #lorem(100)
+    
+    #lorem(100)
+]
