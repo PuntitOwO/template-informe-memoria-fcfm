@@ -145,31 +145,31 @@
     pagebreak(weak: true)
 }
 
-#let mainmatter-section(title, doc) = {
+#let mainmatter-section(title, label, doc) = {
     let cnt = counter(heading)
     show heading.where(level: 1): it => text(size: 24pt, weight: "bold")[Capítulo #cnt.display("1") \ \ #it.body]
     v(85pt)
-    heading(
+    [#heading(
         title,
         numbering: "1.", 
         outlined: true,
         supplement: "Capítulo",
-    )
+    ) #label] // Para añadir la label, debe estar en modo markup
     v(30pt)
     doc
     pagebreak(weak: true)
 }
 
-#let backmatter-section(title, doc) = {
+#let backmatter-section(title, label, doc) = {
     let cnt = counter(heading)
     show heading.where(level: 1): it => text(size: 24pt, weight: "bold")[Apéndice #cnt.display("A") \ \ #it.body]
     v(85pt)
-    heading(
+    [#heading(
         title,
         numbering: "A.",
         outlined: true,
         supplement: "Apéndice",
-    )
+    ) #label] // Para añadir la label, debe estar en modo markup
     v(30pt)
     doc
     pagebreak(weak: true)
@@ -264,10 +264,10 @@
     doc
 }
 
-#let capitulo(title: "", doc) = {
-    mainmatter-section(title, doc)
+#let capitulo(title: "", label: none, doc) = {
+    mainmatter-section(title, label, doc)
 }
 
-#let apendice(title: "", doc) = {
-    backmatter-section(title, doc)
+#let apendice(title: "", label: none, doc) = {
+    backmatter-section(title, label, doc)
 }
