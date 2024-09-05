@@ -52,7 +52,7 @@ En el caso de la práctica extendida, incluir detalles de la organización, su q
 
 Ejemplos de referencias:
 - Conferencia: @CorlessJK97 // azucar sintactica para #cite("CorlessJK97")
-- Revista y Tesis: #cite("NewmanT42", "Turing38") // para citas múltiples se usa #cite
+- Revista y Tesis: #cite(<NewmanT42>)#cite(<Turing38>) // para citas múltiples se usa #cite
 
 = Objetivos
 
