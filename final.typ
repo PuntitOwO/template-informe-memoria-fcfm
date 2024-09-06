@@ -236,14 +236,14 @@
 #let tot = {
     frontmatter-section(
         title: "Índice de Tablas",
-        outline(title: none, target: figure.where(kind: table)),
+        outline(title: none, fill: none, target: figure.where(kind: table)),
     )
 }
 
 #let toi = {
     frontmatter-section(
         title: "Índice de Ilustraciones",
-        outline(title: none, target: figure.where(kind: image)),
+        outline(title: none, fill: none, target: figure.where(kind: image)),
     )
 }
 
