@@ -121,7 +121,7 @@
         justify: true,
         first-line-indent: 15pt,
     ) // Formato de párrafos
-    show par: set block(spacing: 2em) // Espacio entre párrafos
+    set par(spacing: 2em) // Espacio entre párrafos
 
     // Workaround para que se aplique la indentación al primer párrafo luego de un heading
     // show heading: it => {
@@ -162,13 +162,13 @@
 
 #let backmatter-section(title, label, doc) = {
     let cnt = counter(heading)
-    show heading.where(level: 1): it => text(size: 24pt, weight: "bold")[Apéndice #cnt.display("A") \ \ #it.body]
+    show heading.where(level: 1): it => text(size: 24pt, weight: "bold")[Anexo #cnt.display("A") \ \ #it.body]
     v(85pt)
     [#heading(
         title,
         numbering: "A.",
         outlined: true,
-        supplement: "Apéndice",
+        supplement: "Anexo",
     ) #label] // Para añadir la label, debe estar en modo markup
     v(30pt)
     doc
@@ -251,14 +251,14 @@
     toc
     tot
     toi
-    show page: set page(numbering: "1")
+    set page(numbering: "1")
     set heading(numbering: "1.1.")
     counter(page).update(1)
     doc
 }
 
 #let end-doc(bib-file: "bibliografia.yml", doc) = {
-    bibliography(bib-file, title: "Referencias", style: "ieee")
+    bibliography(bib-file, title: "Bibliografía", style: "ieee")
     counter(heading).update(0)
     pagebreak(weak: true)
     doc
