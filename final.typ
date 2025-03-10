@@ -222,13 +222,14 @@
 }
 
 #let toc = {
+    set outline.entry(fill: none)
     show outline.entry.where(level: 1): it => box(height: 20pt, align(bottom, strong(it)))
     show outline.entry.where(level: 2): it => box(height: 10pt, h(15pt) + it)
     frontmatter-section(
         title: "Tabla de Contenido",
         {
             v(10pt)
-            outline(title: none, fill: none, depth: 2)
+            outline(title: none, depth: 2)
         },
     )
 }
@@ -236,14 +237,14 @@
 #let tot = {
     frontmatter-section(
         title: "Índice de Tablas",
-        outline(title: none, fill: none, target: figure.where(kind: table)),
+        outline(title: none, target: figure.where(kind: table)),
     )
 }
 
 #let toi = {
     frontmatter-section(
         title: "Índice de Ilustraciones",
-        outline(title: none, fill: none, target: figure.where(kind: image)),
+        outline(title: none, target: figure.where(kind: image)),
     )
 }
 
