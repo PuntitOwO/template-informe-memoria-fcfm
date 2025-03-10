@@ -1,5 +1,5 @@
-#import "final.typ": conf, guia, pronombre, resumen, dedicatoria, agradecimientos, start-doc, end-doc, capitulo, apendice
-#let mostrar_guias = true
+#import "final.typ": conf, pronombre, resumen, dedicatoria, agradecimientos, start-doc, end-doc, capitulo, apendice
+
 #show: conf.with(
     titulo: "TÍTULO DE LA MEMORIA/TESIS",
     autor: (nombre: "MARÍA ECHÓN", pronombre: pronombre.elle),

@@ -1,21 +1,4 @@
-#let logos = (
-    escudo: "imagenes/institucion/escudoU2014.svg",
-    fcfm: "imagenes/institucion/fcfm.svg"
-)
-
-#let pronombre = (
-    el:   (titulo: "O", guia: ""),
-    ella: (titulo: "A", guia: "A"),
-    elle: (titulo: "E", guia: "E"),
-)
-
-#let guia(visible: true, body) = if visible [
-    #set rect(width: 100%, stroke: black)
-    #set par(justify: true, first-line-indent: 0pt)
-    #block(breakable: false)[#stack(dir: ttb,
-        rect(fill: black, radius: (top: 5pt, bottom: 0pt), text(fill: white, "Guía (deshabilitar antes de entregar)")),
-        rect(fill: luma(230), radius: (top: 0pt, bottom: 5pt), body)
-    )]] else []
+#import "constants.typ": *
 
 #let conf(
     titulo: none,
