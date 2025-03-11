@@ -1,19 +1,12 @@
-#import "intro.typ": conf, pronombre
+#import "intro.typ": conf
+#import "metadata.typ": example-metadata
 
 // Aquí se importan las guías para ayudar a escribir.
 // Se pueden desactivar cambiando el valor de la variable `mostrar_guias` a `false`.
 #import "intro_guias.typ": *
 #let mostrar_guias = true
 
-#show: conf.with(
-    titulo: "El Título de mi Tema",
-    autor: (nombre: "María Echón", pronombre: pronombre.elle),
-    profesores: ((nombre: "Juan Pérez", pronombre: pronombre.el),),
-    coguias: ((nombre: "Juana Pérez", pronombre: pronombre.ella),),
-    supervisor: (nombre: "María Gómez", pronombre: pronombre.ella),
-    anno: "2023",
-    espaciado_titulo: 2fr,
-)
+#show: conf.with(metadata: example-metadata)
 
 #guia(visible: mostrar_guias, guia_meta)
 

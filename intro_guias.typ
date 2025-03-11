@@ -25,20 +25,10 @@
 #let guia_meta = [
 Se debe quitar todas las guías (estas cajas grises) antes de entregar el documento.
 
-Para ello, se debe cambiar el valor de la variable `mostrar_guias` a `false` en la segunda línea del archivo.
+Para ello, se debe cambiar el valor de la variable `mostrar_guias` a `false`.
 
-Además, hay que reemplazar los datos de la portada en los parámetros de la función `conf` en la línea 3 del archivo.
-
-Los parámetros que acepta la función `conf` son:
-- título: El título del tema.
-- autor: Un diccionario con campos `nombre` y `pronombre`. Para los pronombres, importar el diccionario `pronombre` desde `conf.typ`. Los valores disponibles son `pronombre.el`, `pronombre.ella` y `pronombre.elle`.
-- informe: `false` si es la propuesta de tema, `true` si es el informe final.
-- codigo: Omitir si es la propuesta de tema. Si es el informe final, colocar el código del ramo. (CC6908 para malla v3, CC6907 para malla v5)
-- modalidad: Puede ser \"Memoria\", \"Práctica extendida\", \"Titulación con Magíster\" o \"Doble Titulación de Dos Especialidades\"
-- profesores: Lista de profesores guías. Cada elemento de la lista es un diccionario con campos `nombre` y `pronombre`. Si es un solo elemento, recordar poner una coma al final: `(dict_guia,)`
-- supervisor: Información del supervisor en caso de práctica extendida. Es un diccionario con campos `nombre` y `pronombre`.
-- anno: Año en que se entrega el informe. Por defecto se usa el año actual.
-- espaciado_titulo: Espaciado extra antes del título y al rededor de autor. Por defecto es `1fr`. Se puede usar `2fr` para un espaciado doble, `3fr` para un espaciado triple, etc.
+Además, hay que reemplazar el diccionario de metadata que se entrega a la función `conf`.
+Para ver los parámetros de este diccionario, ver el archivo `metadata.typ`.
 
 Como aproximación, se espera que la propuesta sea de 5 a 10 páginas.
 

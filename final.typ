@@ -1,33 +1,7 @@
-#let logos = (
-    escudo: "imagenes/institucion/escudoU2014.svg",
-    fcfm: "imagenes/institucion/fcfm.svg"
-)
-
-#let pronombre = (
-    el:   (titulo: "O", guia: ""),
-    ella: (titulo: "A", guia: "A"),
-    elle: (titulo: "E", guia: "E"),
-)
-
-#let guia(visible: true, body) = if visible [
-    #set rect(width: 100%, stroke: black)
-    #set par(justify: true, first-line-indent: 0pt)
-    #block(breakable: false)[#stack(dir: ttb,
-        rect(fill: black, radius: (top: 5pt, bottom: 0pt), text(fill: white, "Guía (deshabilitar antes de entregar)")),
-        rect(fill: luma(230), radius: (top: 0pt, bottom: 5pt), body)
-    )]] else []
+#import "constants.typ": *
 
 #let conf(
-    titulo: none,
-    autor: none, // diccionario con nombre y pronombre, (nombre: "", pronombre: pronombre.<el/ella/elle>) 
-    tesis: false, // false para memoria, true para tesis
-    grado-titulo: "???", // especificar el grado o título al que se opta
-    profesores: (), // si es solo un profesor guía, una lista de un elemento es ((nombre: "nombre apellido", pronombre: pronombre.<el/ella/elle>),)
-    coguias: (), // si es solo un profesor co-guía, una lista de un elemento es ((nombre: "nombre apellido", pronombre: pronombre.<el/ella/elle>),)
-    comision: (), // por cada miembro de la comisión, ("nombre completo",)
-    auspicio: none, // si no se especifica, no se muestra
-    anno: none, // si no se especifica, se usa el año actual
-    espaciado_titulo: 1fr, // espacio extra que rodea al título y al nombre en la portada, 1fr es lo mismo que el resto de espacios, 2fr es el doble, etc.
+    metadata: (:), // metadata del documento
     doc,
 ) = {
     // Formato de página
@@ -65,46 +39,46 @@
         )
     ]
 
-    let _memoria = [MEMORIA PARA OPTAR AL TÍTULO DE \ INGENIER#autor.pronombre.titulo CIVIL EN #grado-titulo]
-    let _tesis = [TESIS PARA OPTAR AL GRADO DE \ MAGÍSTER EN #grado-titulo]
-    let _documento = if tesis [#_tesis] else [#_memoria]
+    let _memoria = [MEMORIA PARA OPTAR AL TÍTULO DE \ INGENIER#metadata.autoria.pronombre.titulo CIVIL EN #metadata.grado-titulo]
+    let _tesis = [TESIS PARA OPTAR AL GRADO DE \ MAGÍSTER EN CIENCIAS, MENCIÓN #metadata.final.grado-magister]
+    let _documento = if metadata.final.tesis [#_tesis] else [#_memoria] // TODO: SOPORTAR AMBOS
     let _guia(gen: pronombre.el) = [PROFESOR#gen.guia GUÍA]
     let _coguia(gen: pronombre.el) = [PROFESOR#gen.guia CO-GUÍA]
     let _comision = "MIEMBROS DE LA COMISIÓN:"
-    let _auspicio = "Este trabajo ha sido parcialmente financiado por " + auspicio
+    let _auspicio = "Este trabajo ha sido parcialmente financiado por " + metadata.final.auspicio
     let _ciudad = "SANTIAGO DE CHILE"
-    let _anno = if anno != none [#anno] else [#datetime.today().year()]
+    let _anno = if metadata.anno != none [#metadata.anno] else [#datetime.today().year()]
 
     let portada = align(center)[
         #stack(dir: ttb, spacing: 1fr,
             ..(
-            espaciado_titulo,
-            titulo,
+            metadata.espaciado_titulo,
+            metadata.titulo,
             0.5fr,
             _documento,
-            espaciado_titulo,
-            upper(autor.nombre),
-            espaciado_titulo,
-            if profesores.len() == 0 [#none]
-            else if profesores.len() == 1 
-                [#_guia(gen: profesores.at(0).pronombre): \ #profesores.at(0).nombre]
+            metadata.espaciado_titulo,
+            upper(metadata.autoria.nombre),
+            metadata.espaciado_titulo,
+            if metadata.profesores.len() == 0 [#none]
+            else if metadata.profesores.len() == 1 
+                [#_guia(gen: metadata.profesores.at(0).pronombre): \ #metadata.profesores.at(0).nombre]
             else
-                [#_guia(gen: profesores.at(0).pronombre): \ #profesores.at(0).nombre \
-                #_guia(gen: profesores.at(1).pronombre) 2: \ #profesores.at(1).nombre],
-            if coguias.len() == 0 [#none]
-            else if coguias.len() == 1
-                [#_coguia(gen: coguias.at(0).pronombre): \ #coguias.at(0).nombre]
+                [#_guia(gen: metadata.profesores.at(0).pronombre): \ #metadata.profesores.at(0).nombre \
+                #_guia(gen: metadata.profesores.at(1).pronombre) 2: \ #metadata.profesores.at(1).nombre],
+            if metadata.coguias.len() == 0 [#none]
+            else if metadata.coguias.len() == 1
+                [#_coguia(gen: metadata.coguias.at(0).pronombre): \ #metadata.coguias.at(0).nombre]
             else 
-                [#_coguia(gen: coguias.at(0).pronombre): \ #coguias.at(0).nombre \
-                #_coguia(gen: coguias.at(1).pronombre) 2: \ #coguias.at(1).nombre],
-            if comision.len() == 0 [#none]
-            else if comision.len() == 1
-                [#_comision \ #comision.at(0)]
-            else if comision.len() == 2
-                [#_comision \ #comision.at(0) \ #comision.at(1)]
+                [#_coguia(gen: metadata.coguias.at(0).pronombre): \ #metadata.coguias.at(0).nombre \
+                #_coguia(gen: metadata.coguias.at(1).pronombre) 2: \ #metadata.coguias.at(1).nombre],
+            if metadata.final.comision.len() == 0 [#none]
+            else if metadata.final.comision.len() == 1
+                [#_comision \ #metadata.final.comision.at(0)]
+            else if metadata.final.comision.len() == 2
+                [#_comision \ #metadata.final.comision.at(0) \ #metadata.final.comision.at(1)]
             else
-                [#_comision \ #comision.at(0) \ #comision.at(1) \ #comision.at(2)],
-            if auspicio == none [#none] else [#_auspicio],
+                [#_comision \ #metadata.final.comision.at(0) \ #metadata.final.comision.at(1) \ #metadata.final.comision.at(2)],
+            if metadata.final.auspicio == none [#none] else [#_auspicio],
             [#_ciudad \ #_anno],
             ).filter(it => it != [#none]),
         )
@@ -120,14 +94,8 @@
     set par(
         justify: true,
         first-line-indent: 15pt,
+        spacing: 2em, // Espacio entre párrafos
     ) // Formato de párrafos
-    set par(spacing: 2em) // Espacio entre párrafos
-
-    // Workaround para que se aplique la indentación al primer párrafo luego de un heading
-    // show heading: it => {
-    //     it
-    //     par(text(size:0.35em, h(0.0em)))
-    // } 
     
     set cite(style: "council-of-science-editors") // esto deja las citas contiguas como [1, 2] o [1-3]
     pagebreak(weak: true) // Salto de página
@@ -176,29 +144,24 @@
 }
 
 #let resumen(
-    titulo: none,
-    autor: none, // diccionario con nombre y pronombre, (nombre: "", pronombre: pronombre.<el/ella/elle>) 
-    tesis: false, // false para memoria, true para tesis
-    grado-titulo: "???", // especificar el grado o título al que se opta
-    profesores: (), // si es solo un profesor guía, una lista de un elemento es ((nombre: "nombre apellido", pronombre: pronombre.<el/ella/elle>),)
-    anno: none, // si no se especifica, se usa el año actual
+    metadata: (:), // metadata del documento
     doc,
 ) = {
-    let _memoria = [MEMORIA PARA OPTAR AL TÍTULO DE INGENIER#autor.pronombre.titulo CIVIL EN #grado-titulo]
-    let _tesis = [TESIS PARA OPTAR AL GRADO DE MAGÍSTER EN #grado-titulo]
-    let _documento = if tesis [#_tesis] else [#_memoria]
+    let _memoria = [MEMORIA PARA OPTAR AL TÍTULO DE INGENIER#metadata.autoria.pronombre.titulo CIVIL EN #metadata.grado-titulo]
+    let _tesis = [TESIS PARA OPTAR AL GRADO DE MAGÍSTER EN CIENCIAS, MENCIÓN #metadata.final.grado-magister]
+    let _documento = if metadata.final.tesis [#_tesis] else [#_memoria]
     let _resumen = [RESUMEN DE LA #_documento]
-    let _anno = if anno != none [#anno] else [#datetime.today().year()]
+    let _anno = if metadata.anno != none [#metadata.anno] else [#datetime.today().year()]
     // añadir bloque de resumen
     stack(dir: ltr,
         1fr,
         block(
             width: 60%,
-            [#set text(size: 11pt, hyphenate: false); #_resumen \ POR: #upper(autor.nombre) \ FECHA: #_anno \ PROF. GUIA: #profesores.at(0).nombre],
+            [#set text(size: 11pt, hyphenate: false); #_resumen \ POR: #upper(metadata.autoria.nombre) \ FECHA: #_anno \ PROF. GUIA: #metadata.profesores.at(0).nombre],
         )
     )
     show heading: it => {set text(size: 12pt, hyphenate: false); align(center, it)}
-    heading(titulo, numbering: none, outlined: false)
+    heading(metadata.titulo, numbering: none, outlined: false)
     doc
     pagebreak(weak: true)
 }

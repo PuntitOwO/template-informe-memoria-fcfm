@@ -1,21 +1,9 @@
-#import "final.typ": conf, pronombre, resumen, dedicatoria, agradecimientos, start-doc, end-doc, capitulo, apendice
+#import "final.typ": conf, resumen, dedicatoria, agradecimientos, start-doc, end-doc, capitulo, apendice
+#import "metadata.typ": example-metadata
 
-#show: conf.with(
-    titulo: "TÍTULO DE LA MEMORIA/TESIS",
-    autor: (nombre: "MARÍA ECHÓN", pronombre: pronombre.elle),
-    profesores: ((nombre: "JUAN PÉREZ", pronombre: pronombre.el),),
-    coguias: ((nombre: "JUAN PÉREZ", pronombre: pronombre.ella),),
-    comision: ("NOMBRE COMPLETO UNO", "NOMBRE COMPLETO DOS", "NOMBRE COMPLETO TRES"),
-    anno: "2023",
-    espaciado_titulo: 2fr,
-)
+#show: conf.with(metadata: example-metadata)
 
-#resumen(
-    titulo: "TÍTULO DE LA MEMORIA/TESIS",
-    autor: (nombre: "MARÍA ECHÓN", pronombre: pronombre.elle),
-    profesores: ((nombre: "JUAN PÉREZ", pronombre: pronombre.el),),
-    anno: "2023",
-)[
+#resumen(metadata: example-metadata)[
     #lorem(150)
     
     #lorem(100)
