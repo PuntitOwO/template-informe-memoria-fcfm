@@ -41,7 +41,6 @@
 
     let _memoria = [MEMORIA PARA OPTAR AL TÍTULO DE \ INGENIER#metadata.autoria.pronombre.titulo CIVIL EN #metadata.grado-titulo]
     let _tesis = [TESIS PARA OPTAR AL GRADO DE \ MAGÍSTER EN CIENCIAS, MENCIÓN #metadata.final.grado-magister]
-    let _documento = if metadata.final.tesis [#_tesis] else [#_memoria] // TODO: SOPORTAR AMBOS
     let _guia(gen: pronombre.el) = [PROFESOR#gen.guia GUÍA]
     let _coguia(gen: pronombre.el) = [PROFESOR#gen.guia CO-GUÍA]
     let _comision = "MIEMBROS DE LA COMISIÓN:"
@@ -55,7 +54,8 @@
             metadata.espaciado_titulo,
             metadata.titulo,
             0.5fr,
-            _documento,
+            if metadata.final.tesis [#_tesis],
+            if metadata.final.memoria [#_memoria],
             metadata.espaciado_titulo,
             upper(metadata.autoria.nombre),
             metadata.espaciado_titulo,
@@ -149,7 +149,10 @@
 ) = {
     let _memoria = [MEMORIA PARA OPTAR AL TÍTULO DE INGENIER#metadata.autoria.pronombre.titulo CIVIL EN #metadata.grado-titulo]
     let _tesis = [TESIS PARA OPTAR AL GRADO DE MAGÍSTER EN CIENCIAS, MENCIÓN #metadata.final.grado-magister]
-    let _documento = if metadata.final.tesis [#_tesis] else [#_memoria]
+    let _doble = [TESIS PARA OPTAR AL TÍTULO DE INGENIER#metadata.autoria.pronombre.titulo CIVIL EN #metadata.grado-titulo Y MAGÍSTER EN CIENCIAS, MENCIÓN #metadata.final.grado-magister]
+    let _documento = if metadata.final.tesis and metadata.final.memoria [#_doble] 
+    else if metadata.final.tesis [#_tesis] 
+    else [#_memoria]
     let _resumen = [RESUMEN DE LA #_documento]
     let _anno = if metadata.anno != none [#metadata.anno] else [#datetime.today().year()]
     // añadir bloque de resumen

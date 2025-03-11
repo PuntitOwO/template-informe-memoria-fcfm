@@ -64,7 +64,7 @@
 #capitulo(title: "Tercero")[
     #lorem(100)
     
-    #lorem(50)
+    #lorem(50) @CorlessJK97 @Turing38
 
     #figure(
         image("imagenes/institucion/fcfm.svg", width: 20%),
@@ -72,6 +72,7 @@
     )
     
     #lorem(100)
+    @NewmanT42
 ]
 
 #capitulo(title: "Conclusión")[
